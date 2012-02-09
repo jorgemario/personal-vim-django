@@ -1,0 +1,390 @@
+
+filetype off
+
+" setup Pathogen
+call pathogen#infect()
+call pathogen#helptags()
+
+" setup Vundle
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+
+" My Bundles here:
+"
+" vim-scripts repos
+" Files manager
+Bundle 'majutsushi/tagbar'
+Bundle 'L9'
+Bundle 'FuzzyFinder'
+Bundle 'vim-scripts/mru.vim'
+Bundle 'fholgado/minibufexpl.vim'
+Bundle 'scrooloose/nerdtree'
+Bundle 'sjl/gundo.vim'
+
+" Color scheme
+Bundle 'cschlueter/vim-mustang'
+Bundle 'godlygeek/csapprox'
+
+" Utilities
+Bundle 'tsaleh/vim-matchit'
+Bundle 'Raimondi/delimitMate'
+
+" Syntax Commenter
+Bundle 'vim-scripts/tComment'
+
+" HTML Development
+Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+
+" Universal Syntax Checker + Completion
+Bundle 'UltiSnips'
+Bundle 'scrooloose/syntastic'
+Bundle "Shougo/neocomplcache"
+
+" Python Syntax Checker
+Bundle 'kevinw/pyflakes-vim'
+Bundle 'vim-scripts/pep8'
+Bundle 'vim-scripts/Pydiction'
+Bundle 'vim-scripts/indentpython.vim'
+
+" Versioning System
+Bundle 'tpope/vim-fugitive'
+
+syntax on
+if has("autocmd")
+  filetype plugin indent on
+endif
+set autoindent
+set smartindent
+set tabstop=4
+set shiftwidth=4
+set background=dark
+set expandtab
+
+" this code taken from .vimrc of vim-netbeans 
+inoremap <c-v> <esc>:set paste<cr>"+gp<esc>:set nopaste<enter>i<right /></enter></esc></cr></esc></c-v>
+
+" color scheme
+" colorscheme solarized
+colorscheme mustang
+
+" Shortcut to rapidly toggle `set list`
+let mapleader = ","
+let g:mapleader=","
+nmap <leader>l :set list!<CR>
+ 
+" Fast saving with leader + w
+nmap <leader>w :w!<cr>
+
+" Starts vim with numbers
+set number
+
+" toggle numbers
+nmap <leader>n :set number!<CR>
+
+" Use the same symbols as TextMate for tabstops and EOLs
+set listchars=tab:▸\ ,eol:¬
+
+"Invisible character colors
+highlight NonText guifg=#4a4a59
+highlight SpecialKey guifg=#4a4a59
+
+set incsearch "find the next match as we type the search
+set hlsearch "hilight searches by default
+
+set wrap "dont wrap lines
+set linebreak "wrap lines at convenient points
+
+"hide buffers when not displayed
+set hidden
+
+"statusline setup
+set statusline=%f "tail of the filename
+
+" hotkey to edit .vimrc
+nmap <leader>v :tabedit /home/jorge/.vimrc<CR>
+
+" open MRU window
+nmap <leader>u :MRU<CR>
+let MRU_Max_Entries = 100
+
+" Bubble single lines (normal map)
+nmap <C-Up> [e
+nmap <C-Down> ]e
+
+" Bubble multiple lines (visual map)
+vmap <C-Up> [egv
+vmap <C-Down> ]egv
+
+" Indentation
+nmap <S-Tab> <<
+nmap <Tab> >>
+vmap <S-Tab> <gv
+vmap <Tab> >gv
+
+" Visually select the text that was last edited/pasted
+nmap gV `[v`]
+
+" add new line below the current line (like eclipse)
+imap <S-CR> <Esc>o
+nmap <S-CR> o
+
+" switching tabs ala firefox
+" map <C-S-]> gt
+" map <C-S-[> gT
+map <M-1> 1gt
+map <M-2> 2gt
+map <M-3> 3gt
+map <M-4> 4gt
+map <M-5> 5gt
+map <M-6> 6gt
+map <M-7> 7gt
+map <M-8> 8gt
+map <M-9> 9gt
+map <M-0> :tablast<CR>
+
+imap <M-1> <Esc>1gt
+imap <M-2> <Esc>2gt
+imap <M-3> <Esc>3gt
+imap <M-4> <Esc>4gt
+imap <M-5> <Esc>5gt
+imap <M-6> <Esc>6gt
+imap <M-7> <Esc>7gt
+imap <M-8> <Esc>8gt
+imap <M-9> <Esc>9gt
+imap <M-0> <Esc>:tablast<CR>
+
+"set sw=2
+"set sts=2
+
+" Ctrl-S save (works in command and insert mode)
+map <C-S> :w<CR>
+imap <C-S> <Esc>:w<CR>
+
+" PYTHON
+" Execute Python file being edited with <Shift> + e:
+nnoremap E w:<CR>:!python % <CR>
+
+" Shortcut to Close quickfix window with leader+c
+nnoremap <leader>c <CR>:cclose<CR>
+
+" Set autocomplete form
+set completeopt=menuone,longest,preview
+
+"--- python formatting help ---
+autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+
+" Enable omni completion.
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown,ctp setocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+autocmd FileType php,ctp set omnifunc=phpcomplete#CompletePHP
+autocmd FileType vim set omnifunc=syntaxcomplete#Complete
+
+" markdown
+au BufEnter,Bufread *.mkd,*.md,*.mdown,*.markdown set tw=0
+
+" http://www.brankovukelic.com/post/2091037293/turn-vim-into-powerful-javascript-editor"
+
+" HTML (tab width 2 chr, no wrapping)
+autocmd FileType html set sw=2
+autocmd FileType html set ts=2
+autocmd FileType html set sts=2
+autocmd FileType html set textwidth=0
+
+" XHTML (tab width 2 chr, no wrapping)
+autocmd FileType xhtml set sw=2
+autocmd FileType xhtml set ts=2
+autocmd FileType xhtml set sts=2
+autocmd FileType xhtml set textwidth=0
+
+" CSS (tab width 2 chr, wrap at 79th char)
+autocmd FileType css set sw=2
+autocmd FileType css set ts=2
+autocmd FileType css set sts=2
+
+" Folding
+" auto save folding : http://princ3.wordpress.com/2007/01/26/automaticaly-save-foldings-in-vim/
+set viewoptions=folds
+au BufWinLeave * silent! mkview
+au BufWinEnter * silent! loadview
+
+autocmd Syntax c,cpp,vim,xml,html,xhtml,js,php,py,python set foldmethod=manual
+autocmd Syntax c,cpp,vim,xml,html,xhtml,perl normal zR
+
+"remove trailing whitespace
+"http://vim.wikia.com/wiki/Remove_unwanted_spaces#Automatically_removing_all_trailing_whitespace
+autocmd BufWritePre *.c :%s/\s\+$//e
+autocmd BufWritePre *.cpp :%s/\s\+$//e
+autocmd BufWritePre *.c++ :%s/\s\+$//e
+autocmd BufWritePre *.h :%s/\s\+$//e
+autocmd BufWritePre *.java :%s/\s\+$//e
+autocmd BufWritePre *.php :%s/\s\+$//e
+autocmd BufWritePre *.pl :%s/\s\+$//e
+autocmd BufWritePre *.py :%s/\s\+$//e
+
+" Autoclose quickfix windows when quit
+" http://stackoverflow.com/questions/7476126/how-to-automatically-close-the-quick-fix-window-when-leaving-a-file
+aug QFClose
+  au!
+  au WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"|q|endif
+aug END
+
+""""""""""""""""""""""""""""""""""""""""""""""""
+" Auto close preview menu autocomplete after choose
+" http://stackoverflow.com/questions/3105307/how-do-you-automatically-remove-the-preview-window-after-autocompletion-in-vim
+"
+" If you prefer the Omni-Completion tip window to close when a selection is
+" made, these lines close it on movement in insert mode or when leaving
+" insert mode
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+
+
+" CUSTOM CONFIGURATION FOR INSTALLED PLUGIN
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Pep8 using F6
+" You can change with this :
+let g:pep8_map='F6'
+
+" Pydiction
+let g:pydiction_location='~/.vim/bundle/Pydiction/complete-dict'
+
+"""" PYTHON STYLE """"
+let python_highlight_all=1 " Enable all plugin's highlighting.
+let python_slow_sync=1 " For fast machines.
+let python_print_as_function=1 " Color 'print' function.
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" UltiSnips - ultimate snippets
+"
+set runtimepath+=~/.vim/bundle/UltiSnips
+let g:UltiSnipsSnippetsDir='~/.vim/bundle/UltiSnips/UltiSnips/'
+
+set runtimepath+=~/.vim/ultisnips_rep
+
+" UltiSnips plugin
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" FuzzFinder Shorcuts. Using F2 for opening FuzzyFinderTextMate
+map <leader>f :FufFileWithCurrentBufferDir<CR>
+map <leader>m :FufFileWithFullCwd<CR>
+map <leader>b :FufBuffer<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" MRU shorcuts
+" map <leader><space> :MRU<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Pyflakes configuration
+if has("gui_running")
+    highlight SpellBad term=underline gui=undercurl guisp=Orange
+endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Configure neocomplcache autocomplete
+" http://www.vim.org/scripts/script.php?script_id=2620
+
+highlight Pmenu gui=bold
+
+" Enable heavy omni completion.
+if !exists('g:neocomplcache_omni_patterns')
+    let g:neocomplcache_omni_patterns = {}
+endif
+
+" NeoComplCache
+let g:neocomplcache_enable_at_startup = 1 " Use neocomplcache.
+let g:neocomplcache_enable_smart_case = 1 " Use smartcase.
+let g:neocomplcache_enable_camel_case_completion = 1 " Use camel case completion.
+let g:neocomplcache_enable_underbar_completion = 1 " Use underbar completion.
+let g:neocomplcache_min_syntax_length = 2 " Set minimum syntax keyword length.
+let g:neocomplcache_enable_auto_select = 1
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+let g:neocomplcache_enable_auto_complete = 1 " Enable automatic popup
+
+if has("gui_running")
+    highlight SpellBad term=underline gui=undercurl guisp=Orange
+endif
+
+" now you can open NERDTree and Tagbar using F8
+" http://stackoverflow.com/questions/6624043/how-to-open-or-close-nerdtree-and-tagbar-with-leader
+" nmap <F8> :call ToggleNERDTreeAndTagbar()<CR>
+
+" TagBar Configuration
+let g:tagbar_usearrows=1
+let g:tagbar_width=30
+let g:tagbar_singleclick=1
+
+" Use F8 to open Tagbar in Right side
+nnoremap <F8> :TagbarToggle<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""
+" NERDTree : https://github.com/scrooloose/nerdtree.git
+" MODIFYING NERDTree MY CUSTOM
+" how to using NERDTree :
+" http://ykyuen.wordpress.com/2011/04/04/nerdtree-the-file-explorer-in-vivim/
+"""""""""""""""""""""""""""""""""""""""""""
+
+" Enable this for make NERDTree load every opening files
+" autocmd VimEnter * NERDTree " Make Always Load NERDTree every opening files
+" autocmd VimEnter * wincmd p " Automatically go to buffer every time open files
+
+" FIXING NERDTree, automatically close if there no file edited
+"https://github.com/scrooloose/nerdtree/issues/21
+"
+" autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
+
+" Use leader + . for opening File Explorer
+map <leader>t :NERDTreeToggle<CR>
+let g:NERDTreeShowBookmarks=1
+let g:NERDTreeMouseMode=3
+let g:NERDTreeWinSize=30
+
+" Close all open buffers on entering a window if the only
+" buffer that's left is the NERDTree buffer
+function! s:CloseIfOnlyNerdTreeLeft()
+  if exists("t:NERDTreeBufName")
+    if bufwinnr(t:NERDTreeBufName) != -1
+      if winnr("$") == 1
+        q
+      endif
+    endif
+  endif
+endfunction
+
+"nerdtree settings
+"let g:NERDTreeMouseMode = 2
+"let g:NERDTreeWinSize = 40
+
+"explorer mappings
+" nnoremap <f2> :NERDTreeToggle<cr>
+
+"snipmate settings
+let g:snips_author = "Jorge //\\\\\\"
+
+"This unsets the "last search pattern" register by hitting return
+nnoremap <CR> :noh<CR><CR>
+
+"allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+
+"store lots of :cmdline history
+set history=1000
+
+"folding settings
+set foldmethod=indent "fold based on indent
+set foldnestmax=3 "deepest fold is 3 levels
+set nofoldenable "dont fold by defaul
+
+
