@@ -15,9 +15,10 @@ set smartindent
 set tabstop=8
 set shiftwidth=4
 set softtabstop=4
-set background=dark
+set background=light
 set expandtab
-set nowrap
+set guioptions=agim
+"set nowrap
 
 " color scheme
 colorscheme solarized
@@ -157,8 +158,9 @@ nmap <c-e> :MRU<CR>
 "let g:sparkupNextMapping = '<c-n>'
 let g:sparkupExecuteMapping = '<c-j>'
 
- " Ctrl+X O
+" ^X ^O
 autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType python set omnifunc=pysmell#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType htmldjango set omnifunc=htmlcomplete#CompleteTags
@@ -171,3 +173,4 @@ autocmd FileType htmldjango setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType css setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType javascript setlocal ts=4 sts=2 sw=2 noexpandtab
 
+"autocmd FileType python setlocal omnifunc=pysmell#Complete

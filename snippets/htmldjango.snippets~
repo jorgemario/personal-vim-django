@@ -348,4 +348,3 @@ snippet ul
 	<ul class="${1:css}">
 		${2}
 	</ul>
-snippet div.span1
