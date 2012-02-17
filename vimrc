@@ -160,7 +160,7 @@ let g:sparkupExecuteMapping = '<c-j>'
 
 " ^X ^O
 autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType python set omnifunc=pysmell#Complete
+"autocmd FileType python set omnifunc=pysmell#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType htmldjango set omnifunc=htmlcomplete#CompleteTags
